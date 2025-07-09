@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./server/app",
     "dev": "nodemon ./server/app",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test/basic.test.js",
     "build": "echo \"Building application...\" && npm ci --only=production",
     "pm2:start": "pm2 start ecosystem.config.js",
     "pm2:stop": "pm2 stop ecosystem.config.js",
@@ -21,10 +21,23 @@
     "express",
     "email",
     "mail",
-    "nodemailer"
+    "nodemailer",
+    "smtp",
+    "email-service",
+    "api",
+    "logging",
+    "winston"
   ],
-  "author": "superRice",
+  "author": "superRice <1246333567@qq.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/node-email-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/node-email-service/issues"
+  },
+  "homepage": "https://github.com/yourusername/node-email-service#readme",
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
