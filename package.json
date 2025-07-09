@@ -1,10 +1,30 @@
 {
   "name": "nodemessage",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Node.js 邮件发送服务",
+  "main": "server/app.js",
   "private": true,
   "scripts": {
-    "start": "node ./server/app"
+    "start": "node ./server/app",
+    "dev": "nodemon ./server/app",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Building application...\" && npm ci --only=production",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop ecosystem.config.js",
+    "pm2:restart": "pm2 restart ecosystem.config.js",
+    "pm2:delete": "pm2 delete ecosystem.config.js",
+    "logs": "pm2 logs",
+    "status": "pm2 status"
   },
+  "keywords": [
+    "nodejs",
+    "express",
+    "email",
+    "mail",
+    "nodemailer"
+  ],
+  "author": "superRice",
+  "license": "ISC",
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -15,5 +35,12 @@
     "morgan": "~1.9.1",
     "nodemailer": "^7.0.5",
     "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
   }
 }

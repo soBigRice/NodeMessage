@@ -23,6 +23,7 @@ MAIL_FROM=your-email@qq.com
 **POST** `/send-email`
 
 **请求体：**
+
 ```json
 {
   "to": "recipient@example.com",
@@ -33,6 +34,7 @@ MAIL_FROM=your-email@qq.com
 ```
 
 **响应：**
+
 ```json
 {
   "success": true,
@@ -49,6 +51,7 @@ MAIL_FROM=your-email@qq.com
 **GET** `/verify-mail`
 
 **响应：**
+
 ```json
 {
   "success": true,
@@ -61,10 +64,12 @@ MAIL_FROM=your-email@qq.com
 **GET** `/mail-logs`
 
 **查询参数：**
-- `limit`: 返回记录数量限制（默认100）
-- `type`: 记录类型（all/success/error，默认all）
+
+- `limit`: 返回记录数量限制（默认 100）
+- `type`: 记录类型（all/success/error，默认 all）
 
 **响应：**
+
 ```json
 {
   "success": true,
@@ -89,6 +94,7 @@ MAIL_FROM=your-email@qq.com
 **GET** `/mail-stats`
 
 **响应：**
+
 ```json
 {
   "success": true,
@@ -157,31 +163,34 @@ curl http://localhost:5173/mail-stats
 ### 日志内容
 
 每条日志包含以下信息：
+
 - `timestamp` - 发送时间
 - `to` - 收件人
 - `subject` - 邮件主题
 - `status` - 发送状态（success/error）
-- `messageId` - 邮件ID（成功时）
+- `messageId` - 邮件 ID（成功时）
 - `error` - 错误信息（失败时）
 - `duration` - 发送耗时（毫秒）
 - `size` - 邮件大小（字节）
 
 ### 日志轮转
 
-- 每个日志文件最大5MB
-- 保留最近10个日志文件
+- 每个日志文件最大 5MB
+- 保留最近 10 个日志文件
 - 自动清理旧文件
 
 ## 常见邮件服务器配置
 
-### QQ邮箱
+### QQ 邮箱
+
 ```
 MAIL_HOST=smtp.qq.com
 MAIL_PORT=587
 MAIL_SECURE=false
 ```
 
-### 163邮箱
+### 163 邮箱
+
 ```
 MAIL_HOST=smtp.163.com
 MAIL_PORT=465
@@ -189,16 +198,87 @@ MAIL_SECURE=true
 ```
 
 ### Gmail
+
 ```
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_SECURE=false
 ```
 
-## 注意事项
+## 部署和运行
 
-1. **QQ邮箱**：需要在QQ邮箱设置中开启SMTP服务，并使用应用专用密码
-2. **163邮箱**：需要在邮箱设置中开启SMTP服务，并使用应用专用密码
-3. **Gmail**：需要使用应用专用密码或OAuth2认证
-4. **请确保 `.env` 文件中的邮件配置正确**
-5. **建议在生产环境中使用更安全的认证方式**
+### 开发环境
+
+```bash
+# 安装依赖
+npm install
+
+# 开发模式（热重载）
+npm run dev
+
+# 普通启动
+npm start
+```
+
+### 生产环境
+
+#### 1. 传统部署
+
+```bash
+# 构建项目
+./build.sh
+
+# 启动服务
+npm start
+```
+
+#### 2. PM2 部署
+
+```bash
+# 全局安装 PM2
+npm install -g pm2
+
+# 启动服务
+npm run pm2:start
+
+# 查看状态
+npm run status
+
+# 查看日志
+npm run logs
+
+# 重启服务
+npm run pm2:restart
+
+# 停止服务
+npm run pm2:stop
+```
+
+#### 3. Docker 部署
+
+```bash
+# 构建镜像
+docker build -t node-message .
+
+# 运行容器
+docker run -d -p 5173:5173 --env-file .env node-message
+
+# 或使用 docker-compose
+docker-compose up -d
+```
+
+### 环境要求
+
+- Node.js >= 14.0.0
+- npm >= 6.0.0
+
+### 部署检查清单
+
+- [ ] 配置 `.env` 文件
+- [ ] 确保邮件服务器配置正确
+- [ ] 检查端口是否可用
+- [ ] 确保日志目录权限正确
+- [ ] 配置防火墙规则
+- [ ] 设置进程管理器（PM2）
+- [ ] 配置反向代理（如 Nginx）
+- [ ] 设置 SSL 证书（生产环境）

@@ -74,3 +74,9 @@ ecosystem.config.js
 *.zip
 *.tar.gz
 *.rar
+
+# Docker
+.dockerignore
+
+# PM2
+.pm2/

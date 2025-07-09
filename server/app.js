@@ -1,7 +1,7 @@
 /*
  * @Author: superRice
  * @Date: 2025-07-09 12:47:58
- * @LastEditors: superRice 1246333567// 邮件配置验证路由
+ * @LastEditors: superRice 1246333567@qq.com
 app.ge    if (result.success) {
       res.json({
         success: true,
@@ -89,7 +89,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 
 // 基本路由
 app.get("/", (req, res) => {
-  res.json({ message: "Hello World! Express服务器已启动" });
+  res.json({ message: "Hello World! Express服务器已启动。。。。" });
 });
 
 // 邮件发送路由
